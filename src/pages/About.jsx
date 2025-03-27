@@ -2,16 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaReact, FaCode, FaLaptopCode } from 'react-icons/fa';
 import FloatingIcons from '../components/FloatingIcons';
-import { TypeAnimation } from 'react-type-animation'; // Import TypeAnimation
-import { useInView } from 'react-intersection-observer'; // Import useInView
+import { TypeAnimation } from 'react-type-animation';
+import { useInView } from 'react-intersection-observer';
 
 const About = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // Trigger animation only once
-    threshold: 0.3, // Trigger when 30% of the section is visible
+    triggerOnce: true,
+    threshold: 0.3,
   });
 
-  // Adjusted icon data to have better positioning and spacing
   const iconsData = [
     {
       Icon: FaReact,
@@ -49,7 +48,7 @@ const About = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
       transition={{ duration: 0.8 }}
-      ref={ref} // Add ref to the section to track visibility
+      ref={ref}
     >
       {/* Floating Icons with Dynamic Zigzag Movement */}
       <FloatingIcons iconsData={iconsData} />
@@ -78,10 +77,10 @@ const About = () => {
         <br />
         <br />
         <TypeAnimation
-          sequence={['Code', 2000, 'Gaming', 2000, 'Learn new things', 2000]} // Dynamic sequence for the typewriter effect
+          sequence={['Code', 2000, 'Gaming', 2000, 'Learn new things', 2000]}
           wrapper='span'
-          className='text-xl mt-4 text-blue-400 font-semibold' // Custom styling for the type animation
-          repeat={Infinity} // Repeat infinitely
+          className='text-xl mt-4 text-blue-400 font-semibold'
+          repeat={Infinity}
         />
         <br />
         <br />I believe that staying calm and focused is the key to success,

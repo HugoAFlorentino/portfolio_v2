@@ -12,55 +12,46 @@ const Hero = () => {
     const scrollPosition = window.innerHeight + window.scrollY;
     const documentHeight = document.documentElement.scrollHeight;
 
-    if (scrollPosition >= documentHeight) {
-      setIsAtBottom(true);
-    } else {
-      setIsAtBottom(false);
-    }
+    setIsAtBottom(scrollPosition >= documentHeight);
   };
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
-      window.scrollTo({
-        top: aboutSection.offsetTop,
-        behavior: 'smooth',
-      });
+      window.scrollTo({ top: aboutSection.offsetTop, behavior: 'smooth' });
     }
   };
 
   const iconsData = [
     {
       Icon: FaReact,
-      startX: '500vw', // Use percentage units for better positioning
-      startY: '500vh', // Percentage of viewport height for initial Y position
-      movementX: 40, // Movement in X direction (adjust to get spacing)
-      movementY: 30, // Movement in Y direction (adjust to get spacing)
+      startX: '500vw',
+      startY: '500vh',
+      movementX: 40,
+      movementY: 30,
       duration: 5,
       delay: 0,
     },
     {
       Icon: FaCode,
-      startX: '200vw', // Position more to the right
-      startY: '200vh', // Position further down
-      movementX: -60, // Adjust movement for better spread
-      movementY: 50, // Adjust movement for better spread
+      startX: '200vw',
+      startY: '200vh',
+      movementX: -60,
+      movementY: 50,
       duration: 5,
       delay: 0.5,
     },
     {
       Icon: FaLaptopCode,
-      startX: '900vw', // Position at the center
-      startY: '900vh', // Move further down for better separation
-      movementX: 80, // Increased movement in X
-      movementY: -70, // Increased movement in Y
+      startX: '900vw',
+      startY: '900vh',
+      movementX: 80,
+      movementY: -70,
       duration: 6,
       delay: 1,
     },
@@ -71,15 +62,20 @@ const Hero = () => {
       id='hero'
       className='relative flex flex-col justify-center items-center h-screen text-center overflow-hidden bg-cover bg-center py-16'
       style={{ backgroundImage: "url('your-background-image.jpg')" }}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       {/* Floating Icons */}
       <FloatingIcons iconsData={iconsData} />
 
-      {/* Animated Heading with Waving Hand */}
-      <motion.h1 className='text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text flex items-center gap-3'>
+      {/* Animated Heading with Soft Zoom-In and Coming from Bottom */}
+      <motion.h1
+        className='p-6 text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text flex items-center gap-3'
+        initial={{ opacity: 0, y: 50, scale: 0.8 }} // Start below and scaled down
+        animate={{ opacity: 1, y: 0, scale: 1 }} // Come to normal position and size
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      >
         Hi,
         <motion.span
           className='inline-block text-white'
@@ -95,9 +91,9 @@ const Hero = () => {
       {/* Animated Subheading */}
       <motion.div
         className='mt-8'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1, duration: 1, ease: 'easeOut' }}
       >
         <TypeAnimation
           sequence={['Web Developer', 2000, 'Tech Enthusiast', 2000]}
@@ -107,25 +103,42 @@ const Hero = () => {
         />
       </motion.div>
 
-      {/* Call to Action Button */}
+      {/* Animated Button */}
       <motion.button
-        className='mt-6 px-6 py-3 text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md hover:shadow-blue-400 transition duration-300 hover:scale-105 focus:outline-none'
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        className='mt-6 px-6 py-3 text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md transition-all duration-500 relative overflow-hidden'
+        initial={{ opacity: 0, y: 50, scale: 0.8 }} // Start slightly below and scaled down
+        animate={{ opacity: 1, y: 0, scale: 1 }} // Animate to its normal position and size
+        transition={{ duration: 0.3, ease: 'easeOut' }} // Smooth animation
+        whileHover={{
+          scale: 1.05,
+          boxShadow: '0px 0px 20px rgba(59, 130, 246, 0.7)',
+        }}
+        whileTap={{ scale: 0.98 }}
         onClick={scrollToAbout}
       >
         Explore More
+        <motion.span
+          className='absolute inset-0 bg-white opacity-10'
+          initial={{ x: '-100%' }}
+          animate={{ x: '100%' }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            repeatType: 'loop',
+            ease: 'linear',
+          }}
+        />
       </motion.button>
 
-      {/* Scroll Indicator (Arrow) */}
+      {/* Scroll Indicator (Arrow) with Smoother Bounce */}
       {!isAtBottom && (
         <motion.div
-          className='fixed bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce'
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ repeat: Infinity, duration: 1 }}
+          className='fixed bottom-10 left-1/2 transform -translate-x-1/2 text-4xl text-white'
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: [10, -10, 10] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
         >
-          <FaArrowDown className='text-4xl text-white' />
+          <FaArrowDown />
         </motion.div>
       )}
     </motion.section>

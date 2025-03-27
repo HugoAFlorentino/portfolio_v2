@@ -23,16 +23,8 @@ const FloatingIcons = ({ iconsData }) => {
               y: startYNum,
             }}
             animate={{
-              x: [
-                startXNum,
-                startXNum + movementX,
-                startXNum, // Move back to the initial X position for the zig-zag
-              ],
-              y: [
-                startYNum,
-                startYNum + movementY,
-                startYNum, // Move back to the initial Y position for the zig-zag
-              ],
+              x: [startXNum, startXNum + movementX, startXNum],
+              y: [startYNum, startYNum + movementY, startYNum],
             }}
             transition={{
               repeat: Infinity,
@@ -41,7 +33,7 @@ const FloatingIcons = ({ iconsData }) => {
               delay: delay,
             }}
             style={{
-              fontSize: '3rem', // Icon size
+              fontSize: '3rem',
             }}
           >
             <Icon />

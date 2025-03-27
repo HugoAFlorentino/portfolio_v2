@@ -31,15 +31,14 @@ const SkillCard = ({ name, icon, progress }) => {
         ease: 'easeOut',
         delay: 0.2,
         type: 'spring',
-        stiffness: 400, // Increase stiffness for a quicker pop
-        damping: 15, // Decrease damping for less resistance
+        stiffness: 400,
+        damping: 15,
       }}
       whileHover={{
         scale: 1.05,
-        transition: { type: 'spring', stiffness: 400, damping: 15 }, // Apply smooth spring scaling on hover
+        transition: { type: 'spring', stiffness: 400, damping: 15 },
       }}
     >
-      {/* Icon stays CENTERED on sm, LEFT on larger screens */}
       <motion.div
         className='mb-4 flex justify-center sm:justify-start'
         initial={{ scale: 0, rotate: -20, opacity: 0 }}
@@ -102,7 +101,7 @@ const Skills = () => {
     {
       Icon: FaLaptopCode,
       startX: '900vw',
-      startY: '900vh',
+      startY: '800vh',
       movementX: 80,
       movementY: -70,
       duration: 6,

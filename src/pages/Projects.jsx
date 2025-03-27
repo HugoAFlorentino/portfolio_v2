@@ -8,8 +8,8 @@ import {
   FaCode,
   FaLaptopCode,
 } from 'react-icons/fa';
-import { useInView } from 'react-intersection-observer'; // To trigger animations when in view
-import { FloatingIcons } from '../components'; // Assuming the FloatingIcons component is in the components folder
+import { useInView } from 'react-intersection-observer';
+import { FloatingIcons } from '../components';
 
 const projects = [
   {
@@ -40,7 +40,6 @@ const projects = [
     link: 'https://github.com/project4',
     image: '/images/project4.png',
   },
-  // Add more projects as needed
 ];
 
 const ProjectCard = ({ title, description, techStack, link, image }) => {
@@ -49,8 +48,8 @@ const ProjectCard = ({ title, description, techStack, link, image }) => {
   return (
     <motion.div
       className='relative bg-gray-800 rounded-lg shadow-lg text-center w-full max-w-[380px] h-[160px] flex flex-col justify-between cursor-pointer transition-transform duration-200 mx-auto'
-      whileHover={{ scale: 1.05, rotate: 5 }} // Slight rotation on hover
-      transition={{ duration: 0.2 }} // Faster hover effect
+      whileHover={{ scale: 1.05, rotate: 5 }}
+      transition={{ duration: 0.2 }}
       onClick={() => window.open(link, '_blank')}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -85,19 +84,16 @@ const ProjectCard = ({ title, description, techStack, link, image }) => {
 const Projects = () => {
   const [showAll, setShowAll] = useState(false);
 
-  // For title animation on scroll
   const { ref: titleRef, inView: titleInView } = useInView({
     triggerOnce: true,
     threshold: 0.5,
   });
 
-  // For card animation on scroll
   const { ref: cardRef, inView: cardInView } = useInView({
     triggerOnce: true,
     threshold: 0.5,
   });
 
-  // For button animation on scroll
   const { ref: buttonRef, inView: buttonInView } = useInView({
     triggerOnce: true,
     threshold: 0.5,
@@ -148,7 +144,7 @@ const Projects = () => {
       {/* Title */}
       <motion.h2
         ref={titleRef}
-        className='text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600'
+        className='text-5xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 animate-textGlow'
         initial={{ opacity: 0, y: -50 }}
         animate={{
           opacity: titleInView ? 1 : 0,
@@ -165,7 +161,7 @@ const Projects = () => {
         className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-screen-xl px-6'
       >
         {projects
-          .slice(0, showAll ? projects.length : 3) // Show 3 by default, or all when 'showAll' is true
+          .slice(0, showAll ? projects.length : 3)
           .map((project, index) => (
             <motion.div
               key={index}
@@ -174,7 +170,7 @@ const Projects = () => {
                 opacity: cardInView ? 1 : 0,
                 y: cardInView ? 0 : 50,
               }}
-              transition={{ duration: 0.4 }} // Adjusted duration for faster appearance
+              transition={{ duration: 0.4 }}
             >
               <ProjectCard {...project} />
             </motion.div>
@@ -185,18 +181,33 @@ const Projects = () => {
       {projects.length > 3 && (
         <motion.button
           ref={buttonRef}
-          className='mt-8 px-6 py-3 text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md hover:shadow-blue-400 transition duration-300 hover:scale-105 focus:outline-none'
-          initial={{ opacity: 0, scale: 0.8 }}
+          className='mt-8 px-6 py-3 text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md relative overflow-hidden'
+          initial={{ opacity: 0, y: 50, scale: 0.8 }} // Start from below with small scale
           animate={{
             opacity: buttonInView ? 1 : 0,
+            y: buttonInView ? 0 : 50,
             scale: buttonInView ? 1 : 0.8,
           }}
-          transition={{ duration: 0.2 }} // Shorter initial animation
-          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} // Faster hover effect
-          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          whileHover={{
+            scale: 1.05,
+            boxShadow: '0px 0px 20px rgba(59, 130, 246, 0.7)',
+          }}
+          whileTap={{ scale: 0.98 }}
           onClick={() => setShowAll(!showAll)}
         >
           {showAll ? 'Show Less' : 'Show More'}
+          <motion.span
+            className='absolute inset-0 bg-white opacity-10'
+            initial={{ x: '-100%' }}
+            animate={{ x: '100%' }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              repeatType: 'loop',
+              ease: 'linear',
+            }}
+          />
         </motion.button>
       )}
     </motion.section>

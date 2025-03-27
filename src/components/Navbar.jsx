@@ -54,7 +54,7 @@ const Navbar = () => {
       </ScrollLink>
 
       {/* Socials */}
-      <ul className='ml-28 flex flex-row justify-between gap-4'>
+      <ul className='flex  gap-4'>
         {socials.map(({ id, icon, path }) => (
           <li key={id}>
             <button className='transition duration-300 active:scale-95'>
@@ -86,15 +86,15 @@ const Navbar = () => {
         ))}
       </ul>
 
-      {/* Button Menu */}
+      {/* Button Menu (Hamburger) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='md:hidden text-2xl active:scale-95'
+        className='md:hidden text-2xl active:scale-95 mr-4'
       >
         {isOpen ? (
-          <FaTimes className='text-blue-400 mr-8' />
+          <FaTimes className='text-blue-400' />
         ) : (
-          <FaBars className='text-blue-400 mr-8' />
+          <FaBars className='text-blue-400' />
         )}
       </button>
 
