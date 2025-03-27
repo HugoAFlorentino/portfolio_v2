@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaLinkedin, FaBars, FaTimes } from 'react-icons/fa';
-import { Link as ScrollLink } from 'react-scroll'; // Importing ScrollLink from react-scroll
+import { Link as ScrollLink } from 'react-scroll';
 
 const links = [
   { id: 'about', name: 'About', to: 'about' },
@@ -43,10 +43,10 @@ const Navbar = () => {
   }, [isOpen]);
 
   return (
-    <nav className='fixed top-0 w-full inside-frame flex justify-between items-center py-4 px-6 mt-1 z-40 shadow-md bg-transparent'>
+    <nav className='fixed top-0 left-0 w-full flex justify-between items-center py-4 px-6 z-50 shadow-md bg-transparent'>
       {/* Logo (HugoFlorentino) */}
       <ScrollLink
-        to='hero' // Scrolls to the Hero section with the ID 'hero'
+        to='hero'
         smooth={true}
         className='text-2xl underline font-bold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text animate-textGlow hover:cursor-pointer'
       >
@@ -75,7 +75,7 @@ const Navbar = () => {
           <li key={id}>
             <button className='transition duration-300 active:scale-95'>
               <ScrollLink
-                to={to} // Scrolls to the section with the given ID
+                to={to}
                 smooth={true}
                 className='text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 border border-transparent rounded-md hover:border-blue-600 p-2 transition duration-300'
               >
@@ -112,9 +112,9 @@ const Navbar = () => {
             <li key={id}>
               <button className='transition duration-300 active:scale-95'>
                 <ScrollLink
-                  to={to} // Links to sections like "about", "skills", etc.
-                  smooth={true} // Enable smooth scroll
-                  onClick={() => setIsOpen(false)} // Close the menu after click
+                  to={to}
+                  smooth={true}
+                  onClick={() => setIsOpen(false)}
                   className='block text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 border rounded-md border-transparent hover:border-blue-600 p-2 text-center'
                 >
                   {name}
