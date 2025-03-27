@@ -33,7 +33,7 @@ const About = () => {
     {
       Icon: FaLaptopCode,
       startX: '900vw',
-      startY: '1000vh',
+      startY: '900vh',
       movementX: 80,
       movementY: -70,
       duration: 6,

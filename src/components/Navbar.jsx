@@ -10,8 +10,12 @@ const links = [
 ];
 
 const socials = [
-  { id: 'github', icon: <FaGithub />, path: '#' },
-  { id: 'linkedin', icon: <FaLinkedin />, path: '#' },
+  {
+    id: 'github',
+    icon: <FaGithub />,
+    path: 'https://github.com/HugoAFlorentino',
+  },
+  { id: 'linkedin', icon: <FaLinkedin />, path: 'https://www.linkedin.com/' },
 ];
 
 const Navbar = () => {
@@ -29,16 +33,26 @@ const Navbar = () => {
         setIsOpen(false);
       }
     };
+    const handleScroll = () => {
+      if (isOpen) {
+        setIsOpen(false); // Close menu on scroll
+      }
+    };
+
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
       window.addEventListener('resize', handleResize);
+      window.addEventListener('scroll', handleScroll); // Listen for scroll
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
     }
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, [isOpen]);
 
@@ -54,7 +68,7 @@ const Navbar = () => {
       </ScrollLink>
 
       {/* Socials */}
-      <ul className='flex  gap-4'>
+      <ul className='flex gap-4'>
         {socials.map(({ id, icon, path }) => (
           <li key={id}>
             <button className='transition duration-300 active:scale-95'>
@@ -77,6 +91,7 @@ const Navbar = () => {
               <ScrollLink
                 to={to}
                 smooth={true}
+                offset={-80} // Adjusted offset for navbar height
                 className='text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 border border-transparent rounded-md hover:border-blue-600 p-2 transition duration-300'
               >
                 {name}
@@ -115,6 +130,7 @@ const Navbar = () => {
                   to={to}
                   smooth={true}
                   onClick={() => setIsOpen(false)}
+                  offset={-80} // Adjusted offset for navbar height
                   className='block text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 border rounded-md border-transparent hover:border-blue-600 p-2 text-center'
                 >
                   {name}

@@ -1,15 +1,48 @@
-/* Tailwind and other custom styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Prevent horizontal overflow */
+/* Global Styles */
 html,
 body {
-  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+
+  background-color: #030a1a;
+  box-sizing: border-box;
 }
 
-/* Optional: If you want to ensure full page height and prevent any scroll */
-body {
-  margin: 0;
+/* Prevent horizontal overflow */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Scrollbar Styling for Webkit Browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+/* Animated Scrollbar Thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 4px;
+  border: 2px solid #030a1a;
+}
+
+/* Gradient Animation for Scrollbar Track */
+::-webkit-scrollbar-track {
+  background: linear-gradient(45deg, #030a1a 25%, #000000 50%, #030a1a 75%);
+  background-size: 400% 400%;
+  animation: gradientBlur 6s ease-in-out infinite alternate;
+}
+
+/* Utility Class for Optimizing Performance */
+@layer utilities {
+  .will-change-bg {
+    will-change: background-position, background-size;
+  }
 }

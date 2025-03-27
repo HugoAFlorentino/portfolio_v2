@@ -7,17 +7,29 @@ import FloatingIcons from './FloatingIcons';
 
 const Hero = () => {
   const [isAtBottom, setIsAtBottom] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
 
   const handleScroll = () => {
     const scrollPosition = window.innerHeight + window.scrollY;
     const documentHeight = document.documentElement.scrollHeight;
-
-    setIsAtBottom(scrollPosition >= documentHeight);
+    setIsAtBottom(scrollPosition >= documentHeight - 5);
   };
 
   useEffect(() => {
+    window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    handleResize();
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const scrollToAbout = () => {
@@ -69,11 +81,11 @@ const Hero = () => {
       {/* Floating Icons */}
       <FloatingIcons iconsData={iconsData} />
 
-      {/* Animated Heading with Soft Zoom-In and Coming from Bottom */}
+      {/* Animated Heading */}
       <motion.h1
         className='p-6 text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text flex items-center gap-3'
-        initial={{ opacity: 0, y: 50, scale: 0.8 }} // Start below and scaled down
-        animate={{ opacity: 1, y: 0, scale: 1 }} // Come to normal position and size
+        initial={{ opacity: 0, y: 50, scale: 0.8 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
       >
         Hi,
@@ -106,9 +118,9 @@ const Hero = () => {
       {/* Animated Button */}
       <motion.button
         className='mt-6 px-6 py-3 text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md transition-all duration-500 relative overflow-hidden'
-        initial={{ opacity: 0, y: 50, scale: 0.8 }} // Start slightly below and scaled down
-        animate={{ opacity: 1, y: 0, scale: 1 }} // Animate to its normal position and size
-        transition={{ duration: 0.3, ease: 'easeOut' }} // Smooth animation
+        initial={{ opacity: 0, y: 50, scale: 0.8 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
         whileHover={{
           scale: 1.05,
           boxShadow: '0px 0px 20px rgba(59, 130, 246, 0.7)',
@@ -130,8 +142,8 @@ const Hero = () => {
         />
       </motion.button>
 
-      {/* Scroll Indicator (Arrow) with Smoother Bounce */}
-      {!isAtBottom && (
+      {/* Scroll Indicator (Arrow) */}
+      {!isAtBottom && !isMobile && (
         <motion.div
           className='fixed bottom-10 left-1/2 transform -translate-x-1/2 text-4xl text-white'
           initial={{ opacity: 0, y: 10 }}
