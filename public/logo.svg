@@ -1,0 +1,24 @@
+<svg
+    width="32"
+    height="32"
+    viewBox="0 0 100 100"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <!-- Outer Neon Glow Circle -->
+    <circle cx="50" cy="50" r="45" stroke="#00aaff" stroke-width="6" fill="none" />
+
+    <!-- HF Text with Glow Effect -->
+    <text 
+        x="50" 
+        y="55" 
+        font-family="'Orbitron', sans-serif" 
+        font-size="35"
+        font-weight="bold"
+        text-anchor="middle"
+        fill="#00aaff"
+        stroke="#00aaff"
+        stroke-width="1"
+    >
+        HF
+    </text>
+</svg>
