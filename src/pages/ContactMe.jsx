@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FaReact, FaCode, FaLaptopCode } from 'react-icons/fa';
 import { FloatingIcons } from '../components'; // Import the FloatingIcons component
-import image from '../../public/coding.png';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -94,7 +93,7 @@ const Contact = () => {
         Contact Me
       </motion.h2>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-12 max-w-screen-xl w-full mx-auto'>
+      <div className='ml-[3rem] grid grid-cols-1 md:grid-cols-2 gap-12 max-w-screen-xl w-full mx-auto justify-center items-center'>
         {/* Left column with animated image */}
         <motion.div
           ref={imageRef}
@@ -107,7 +106,7 @@ const Contact = () => {
           transition={{ duration: 1, ease: 'easeOut', delay: 0.5 }}
         >
           <img
-            src={image}
+            src='../../public/coding.png'
             alt='Coding workspace'
             className='w-full h-full object-cover rounded-lg shadow-lg' // Ensure the image fills the height of its parent
           />
@@ -116,7 +115,7 @@ const Contact = () => {
         {/* Right column with animated contact form */}
         <motion.div
           ref={formRef}
-          className='flex flex-col items-center justify-center w-full md:max-w-[500px] h-full' // Add h-full here to match the height of the image
+          className='flex flex-col items-center justify-center w-full md:max-w-[500px] h-full' // Ensure form takes full height too
           initial={{ opacity: 0, x: 100 }}
           animate={{
             opacity: formInView ? 1 : 0,
