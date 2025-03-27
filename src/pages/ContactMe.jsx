@@ -106,7 +106,7 @@ const Contact = () => {
           transition={{ duration: 1, ease: 'easeOut', delay: 0.5 }}
         >
           <img
-            src='../../public/coding.png'
+            src='/coding.png'
             alt='Coding workspace'
             className='w-full h-full object-cover rounded-lg shadow-lg' // Ensure the image fills the height of its parent
           />
