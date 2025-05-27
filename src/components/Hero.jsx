@@ -97,7 +97,7 @@ const Hero = () => {
         >
           👋
         </motion.span>
-        welcome to my little space
+        welcome to my portfolio
       </motion.h1>
 
       {/* Animated Subheading */}
