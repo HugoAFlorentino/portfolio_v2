@@ -10,35 +10,52 @@ import {
 } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import { FloatingIcons } from '../components';
+import { RiTailwindCssFill, RiJavascriptFill } from 'react-icons/ri';
 
 const projects = [
   {
-    title: 'Project One',
-    description: 'A full-stack app with React and Node.js.',
-    techStack: [FaReact, FaNodeJs],
-    link: 'https://github.com/project1',
-    image: '/images/project1.png',
+    title: 'Confy Shop',
+    description:
+      'A E-commerce app with React-Router-Dom, Redux-Toolkit, Tailwind CSS.',
+    techStack: [FaReact, RiTailwindCssFill, FaHtml5, RiJavascriptFill],
+    link: 'https://confy-shop.netlify.app/',
+    image: '/images/confy-shop.png',
   },
   {
-    title: 'Project Two',
-    description: 'A frontend app with HTML and CSS.',
-    techStack: [FaHtml5, FaCss3Alt],
-    link: 'https://github.com/project2',
-    image: '/images/project2.png',
+    title: 'BackRoads',
+    description: 'A landing page with React and Tailwind.',
+    techStack: [FaReact, RiTailwindCssFill, FaHtml5, RiJavascriptFill],
+    link: 'https://backroad-web-app.netlify.app/',
+    image: '/images/backroads.png',
   },
   {
-    title: 'Project Three',
+    title: 'Portfolio Template',
     description: 'A mobile app built with React Native.',
-    techStack: [FaReact],
-    link: 'https://github.com/project3',
-    image: '/images/project3.png',
+    techStack: [FaReact, RiTailwindCssFill, RiJavascriptFill],
+    link: 'https://portfolio-template-v1.netlify.app/',
+    image: '/images/portfolio-template-v1.png',
   },
   {
-    title: 'Project Four',
-    description: 'A full-stack app with Express and MongoDB.',
-    techStack: [FaNodeJs],
-    link: 'https://github.com/project4',
-    image: '/images/project4.png',
+    title: 'React Tic-Tac-Toe',
+    description: 'Tic-Tac-Toe game with React.',
+    techStack: [FaReact, RiJavascriptFill, FaCss3Alt],
+    link: 'https://react-v1-tic-tac-toe.netlify.app/',
+    image: '/images/tic-tac-toe.png',
+  },
+  {
+    title: 'React Todo-List',
+    description:
+      'Todo-List with multiple categories options, create-edit-delete using localstorage.',
+    techStack: [FaReact, RiJavascriptFill, FaCss3Alt],
+    link: 'https://react-v1-todo-list.netlify.app/',
+    image: '/images/todo-list.png',
+  },
+  {
+    title: 'React Guessing-Game',
+    description: 'Guessing-game made in react to practice logic.',
+    techStack: [FaReact, RiJavascriptFill, FaCss3Alt, FaHtml5],
+    link: 'https://react-guessing-game-v1.netlify.app/',
+    image: '/images/guessing-game.png',
   },
 ];
 

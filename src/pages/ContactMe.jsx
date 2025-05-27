@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FaReact, FaCode, FaLaptopCode } from 'react-icons/fa';
 import { FloatingIcons } from '../components';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [text] = useState("Let's create amazing things together!".split(''));
+  const [statusMessage, setStatusMessage] = useState('');
+  const formRef = useRef(null);
 
   // Trigger animation when text enters viewport
   const { ref: textRef, inView: textInView } = useInView({
@@ -13,10 +16,36 @@ const Contact = () => {
     threshold: 0.5,
   });
 
-  const { ref: formRef, inView: formInView } = useInView({
+  const { ref: formAnimRef, inView: formInView } = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
+
+  // EmailJS form submission handler
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    if (!formRef.current) return;
+
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setStatusMessage('Message sent successfully! 🎉');
+          e.target.reset(); // clear the form after sending
+        },
+        (error) => {
+          console.log(error.text);
+          setStatusMessage('Failed to send the message. Please try again.');
+        }
+      );
+  };
 
   return (
     <motion.section
@@ -68,12 +97,10 @@ const Contact = () => {
           <motion.span
             key={index}
             initial={{ opacity: 0, y: -10 }}
-            animate={
-              textInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 } // Reset animation if out of view
-            }
+            animate={textInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
             transition={{
               duration: 0.05,
-              delay: textInView ? index * 0.05 : 0, // Delay only when in view
+              delay: textInView ? index * 0.05 : 0,
               ease: 'easeOut',
             }}
             className='inline-block'
@@ -85,7 +112,7 @@ const Contact = () => {
 
       {/* Contact Form */}
       <motion.div
-        ref={formRef}
+        ref={formAnimRef}
         className='flex flex-col items-center justify-center w-full md:max-w-[500px]'
         initial={{ opacity: 0, x: 100 }}
         animate={{
@@ -94,7 +121,11 @@ const Contact = () => {
         }}
         transition={{ duration: 1, ease: 'easeOut', delay: 0.5 }}
       >
-        <form className='bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md'>
+        <form
+          ref={formRef}
+          onSubmit={sendEmail}
+          className='bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md'
+        >
           <div className='mb-4'>
             <label
               htmlFor='name'
@@ -105,6 +136,7 @@ const Contact = () => {
             <input
               type='text'
               id='name'
+              name='user_name'
               className='w-full p-3 mt-2 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500'
               required
             />
@@ -120,6 +152,7 @@ const Contact = () => {
             <input
               type='email'
               id='email'
+              name='user_email'
               className='w-full p-3 mt-2 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500'
               required
             />
@@ -134,6 +167,7 @@ const Contact = () => {
             </label>
             <textarea
               id='message'
+              name='message'
               className='w-full p-3 mt-2 bg-gray-700 text-white rounded-lg focus:ring-2 focus:ring-blue-500'
               rows='5'
               required
@@ -146,6 +180,11 @@ const Contact = () => {
           >
             Send Message
           </button>
+
+          {/* Show status message */}
+          {statusMessage && (
+            <p className='mt-4 text-center text-sm'>{statusMessage}</p>
+          )}
         </form>
       </motion.div>
     </motion.section>
