@@ -15,7 +15,11 @@ const socials = [
     icon: <FaGithub />,
     path: 'https://github.com/HugoAFlorentino',
   },
-  { id: 'linkedin', icon: <FaLinkedin />, path: 'https://www.linkedin.com/' },
+  {
+    id: 'linkedin',
+    icon: <FaLinkedin />,
+    path: 'www.linkedin.com/in/hugo-florentino-b8ba9b1a3',
+  },
 ];
 
 const Navbar = () => {

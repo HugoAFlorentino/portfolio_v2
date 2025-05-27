@@ -10,6 +10,8 @@ import {
   FaLaptopCode,
 } from 'react-icons/fa';
 import { SiExpress } from 'react-icons/si';
+import { RiTailwindCssFill } from 'react-icons/ri';
+import { BiLogoPostgresql } from 'react-icons/bi';
 import { FloatingIcons } from '../components';
 import { useInView } from 'react-intersection-observer';
 
@@ -70,13 +72,15 @@ const SkillCard = ({ name, icon, progress }) => {
 
 const Skills = () => {
   const skills = [
-    { name: 'HTML', icon: <FaHtml5 />, progress: 85 },
-    { name: 'CSS', icon: <FaCss3Alt />, progress: 70 },
-    { name: 'JavaScript', icon: <FaJs />, progress: 70 },
     { name: 'React', icon: <FaReact />, progress: 75 },
     { name: 'Node.js', icon: <FaNodeJs />, progress: 65 },
-    { name: 'MongoDB', icon: <FaDatabase />, progress: 60 },
+    { name: 'JavaScript', icon: <FaJs />, progress: 70 },
     { name: 'Express', icon: <SiExpress />, progress: 70 },
+    { name: 'NoSQl(MongoDB)', icon: <FaDatabase />, progress: 60 },
+    { name: 'PostgreSQL', icon: <BiLogoPostgresql />, progress: 60 },
+    { name: 'Taiwilnd CSS', icon: <RiTailwindCssFill />, progress: 75 },
+    { name: 'HTML', icon: <FaHtml5 />, progress: 85 },
+    { name: 'CSS', icon: <FaCss3Alt />, progress: 70 },
   ];
 
   const iconsData = [
