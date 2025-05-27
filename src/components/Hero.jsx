@@ -81,6 +81,20 @@ const Hero = () => {
       {/* Floating Icons */}
       <FloatingIcons iconsData={iconsData} />
 
+      {/* Photo Placeholder */}
+      <motion.div
+        className='mb-8 w-32 h-32 rounded-full overflow-hidden shadow-lg'
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
+      >
+        <img
+          src='images/profile-photo.jpg'
+          alt='Your Name'
+          className='w-full h-full object-cover rounded-full'
+        />
+      </motion.div>
+
       {/* Animated Heading */}
       <motion.h1
         className='p-6 text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text flex items-center gap-3'
