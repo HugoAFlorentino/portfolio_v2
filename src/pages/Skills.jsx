@@ -77,7 +77,7 @@ const Skills = () => {
     { name: 'JavaScript', icon: <FaJs />, progress: 70 },
     { name: 'Express', icon: <SiExpress />, progress: 70 },
     { name: 'NoSQl(MongoDB)', icon: <FaDatabase />, progress: 60 },
-    { name: 'PostgreSQL', icon: <BiLogoPostgresql />, progress: 60 },
+    { name: 'SQL', icon: <BiLogoPostgresql />, progress: 60 },
     { name: 'Taiwilnd CSS', icon: <RiTailwindCssFill />, progress: 75 },
     { name: 'HTML', icon: <FaHtml5 />, progress: 85 },
     { name: 'CSS', icon: <FaCss3Alt />, progress: 70 },

@@ -18,7 +18,7 @@ const socials = [
   {
     id: 'linkedin',
     icon: <FaLinkedin />,
-    path: 'www.linkedin.com/in/hugo-florentino-b8ba9b1a3',
+    path: 'https://www.linkedin.com/in/hugo-florentino-b8ba9b1a3/',
   },
 ];
 
@@ -78,6 +78,7 @@ const Navbar = () => {
             <button className='transition duration-300 active:scale-95'>
               <a
                 href={path}
+                target='_blank'
                 className='text-2xl text-blue-400 hover:text-blue-600 transition duration-300'
               >
                 {icon}
