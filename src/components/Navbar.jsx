@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaLinkedin, FaBars, FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 
 const links = [
@@ -61,7 +62,7 @@ const Navbar = () => {
   }, [isOpen]);
 
   return (
-    <nav className='fixed top-0 left-0 w-full flex justify-between items-center py-4 px-6 z-50 shadow-md bg-transparent'>
+    <nav className='fixed top-0  w-full flex justify-between items-center py-4 px-4 md:px-8 lg:px-12 z-50 shadow-md bg-transparent max-w-7xl mx-auto'>
       {/* Logo (HugoFlorentino) */}
       <ScrollLink
         to='hero'
@@ -76,13 +77,13 @@ const Navbar = () => {
         {socials.map(({ id, icon, path }) => (
           <li key={id}>
             <button className='transition duration-300 active:scale-95'>
-              <a
-                href={path}
+              <Link
+                to={path}
                 target='_blank'
                 className='text-2xl text-blue-400 hover:text-blue-600 transition duration-300'
               >
                 {icon}
-              </a>
+              </Link>
             </button>
           </li>
         ))}
@@ -97,7 +98,7 @@ const Navbar = () => {
                 to={to}
                 smooth={true}
                 offset={-80} // Adjusted offset for navbar height
-                className='text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 border border-transparent rounded-md hover:border-blue-600 p-2 transition duration-300'
+                className='text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 border border-transparent rounded-md hover:border-blue-600 p-2 transition duration-300'
               >
                 {name}
               </ScrollLink>
@@ -136,7 +137,7 @@ const Navbar = () => {
                   smooth={true}
                   onClick={() => setIsOpen(false)}
                   offset={-80} // Adjusted offset for navbar height
-                  className='block text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 border rounded-md border-transparent hover:border-blue-600 p-2 text-center'
+                  className='block text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 border rounded-md border-transparent hover:border-blue-600 p-2 text-center'
                 >
                   {name}
                 </ScrollLink>

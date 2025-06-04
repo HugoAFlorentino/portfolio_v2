@@ -16,7 +16,7 @@ const projects = [
   {
     title: 'Blogify-press',
     description:
-      'FullStack blog using react-router-dom, redux, jwt, rate limiter, xss, helmet, cors, for more info please visit my github.',
+      'FullStack blog using react-router-dom, redux, jwt, for more info please visit my github.',
     techStack: [
       FaReact,
       FaNodeJs,
