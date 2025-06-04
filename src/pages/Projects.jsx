@@ -14,6 +14,20 @@ import { RiTailwindCssFill, RiJavascriptFill } from 'react-icons/ri';
 
 const projects = [
   {
+    title: 'Blogify-press',
+    description:
+      'FullStack blog using react-router-dom, redux, jwt, rate limiter, xss, helmet, cors, for more info please visit my github.',
+    techStack: [
+      FaReact,
+      FaNodeJs,
+      RiJavascriptFill,
+      RiTailwindCssFill,
+      FaHtml5,
+    ],
+    link: 'https://blogify-press.netlify.app/',
+    image: '/images/blogify-press.png',
+  },
+  {
     title: 'Confy Shop',
     description:
       'A E-commerce app with React-Router-Dom, Redux-Toolkit, Tailwind CSS.',
@@ -36,13 +50,6 @@ const projects = [
     image: '/images/portfolio-template-v1.png',
   },
   {
-    title: 'React Tic-Tac-Toe',
-    description: 'Tic-Tac-Toe game with React.',
-    techStack: [FaReact, RiJavascriptFill, FaCss3Alt],
-    link: 'https://react-v1-tic-tac-toe.netlify.app/',
-    image: '/images/tic-tac-toe.png',
-  },
-  {
     title: 'React Todo-List',
     description:
       'Todo-List with multiple categories options, create-edit-delete using localstorage.',
@@ -50,6 +57,14 @@ const projects = [
     link: 'https://react-v1-todo-list.netlify.app/',
     image: '/images/todo-list.png',
   },
+  {
+    title: 'React Tic-Tac-Toe',
+    description: 'Tic-Tac-Toe game with React.',
+    techStack: [FaReact, RiJavascriptFill, FaCss3Alt],
+    link: 'https://react-v1-tic-tac-toe.netlify.app/',
+    image: '/images/tic-tac-toe.png',
+  },
+
   {
     title: 'React Guessing-Game',
     description: 'Guessing-game made in react to practice logic.',
@@ -85,8 +100,10 @@ const ProjectCard = ({ title, description, techStack, link, image }) => {
         }`}
       />
       {/* Content */}
-      <div className='relative z-10 flex flex-col items-center justify-center h-full p-6'>
-        <h3 className='text-xl font-bold'>{title}</h3>
+      <div className='relative z-10 flex flex-col items-center justify-center h-full p-6 '>
+        <h3 className='text-xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 animate-textGlow'>
+          {title}
+        </h3>
         <p className='text-gray-400 mt-2'>{description}</p>
         <div className='flex justify-center gap-2 mt-4'>
           {techStack.map((Icon, index) => (
@@ -199,7 +216,7 @@ const Projects = () => {
         <motion.button
           ref={buttonRef}
           className='mt-8 px-6 py-3 text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md relative overflow-hidden'
-          initial={{ opacity: 0, y: 50, scale: 0.8 }} // Start from below with small scale
+          initial={{ opacity: 0, y: 50, scale: 0.8 }}
           animate={{
             opacity: buttonInView ? 1 : 0,
             y: buttonInView ? 0 : 50,

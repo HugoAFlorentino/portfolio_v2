@@ -80,7 +80,6 @@ const Hero = () => {
     >
       {/* Floating Icons */}
       <FloatingIcons iconsData={iconsData} />
-
       {/* Photo Placeholder */}
       <motion.div
         className='mb-8 w-32 h-32 rounded-full overflow-hidden shadow-lg'
@@ -94,7 +93,6 @@ const Hero = () => {
           className='w-full h-full object-cover rounded-full'
         />
       </motion.div>
-
       {/* Animated Heading */}
       <motion.h1
         className='p-6 text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text flex items-center gap-3'
@@ -111,8 +109,17 @@ const Hero = () => {
         >
           👋
         </motion.span>
-        welcome to my portfolio
+        welcome my name is Hugo!
       </motion.h1>
+
+      <motion.p
+        className='p-6 text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 text-transparent bg-clip-text flex items-center gap-3'
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 1 }}
+      >
+        Let’s make your dream come true.
+      </motion.p>
 
       {/* Animated Subheading */}
       <motion.div
@@ -128,7 +135,6 @@ const Hero = () => {
           repeat={Infinity}
         />
       </motion.div>
-
       {/* Animated Button */}
       <motion.button
         className='mt-6 px-6 py-3 text-lg font-semibold bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md transition-all duration-500 relative overflow-hidden'
@@ -155,7 +161,6 @@ const Hero = () => {
           }}
         />
       </motion.button>
-
       {/* Scroll Indicator (Arrow) */}
       {!isAtBottom && !isMobile && (
         <motion.div
