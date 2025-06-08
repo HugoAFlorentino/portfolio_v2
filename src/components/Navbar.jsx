@@ -19,7 +19,7 @@ const socials = [
   {
     id: 'linkedin',
     icon: <FaLinkedin />,
-    path: 'https://www.linkedin.com/in/hugo-florentino-b8ba9b1a3/',
+    path: 'https://www.linkedin.com/in/hugo-florentino-892b61369/',
   },
 ];
 
